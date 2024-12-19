@@ -23,10 +23,18 @@ The vector store was feed using only the train samples.
 To implement the engine of this Q&A system, we leveraged "HuggingFaceH4/zephyr-7b-beta" as LLM model, that was fine-tuned from Mistral-7B-v0.1 to act as helpful assistants.
 We defined a Q&A prompt using the vector store as a retriever, with a standard RAG prompt, accessing the LLM model through a chat model interface.
 
-As guardrails, we created a function that generates the answer, and then apply online evaluations as guardrails to assess if the answer can be safely exhibit to the user. Answer will only exhibit to the user if it pass in the helpfulness, hallucination and document relevance evaluations.
+As guardrails, we created a function that generates the answer, and then apply online evaluations as guardrails to assess if the answer can be safely exhibit to the user. Answer will only exhibit to the user if it pass in the helpfulness, hallucination and document relevance evaluations. In the figure below, it can be seen the function implemented to answer the question, using the RAG System as backend.
 
-To create an interface prototype, I leveraged a simple gradio application.
-Examples of interaction.
+![image](https://github.com/user-attachments/assets/3bab71ae-cfca-437b-a393-e73a61a53467)
+
+To create an interface prototype, I leveraged a simple gradio application. Below it can be noted examples of interactio.
+
+![image](https://github.com/user-attachments/assets/2d761cfc-8dde-4632-951d-85ab126e2fb7)
+
+![image](https://github.com/user-attachments/assets/eda3f45e-32c0-4c32-9b3a-01c4917f0a2d)
+
+![image](https://github.com/user-attachments/assets/ca8fb5bb-0f94-4e59-8af9-cbc1ad7473b6)
+
 
 ## System Evaluation
 
@@ -46,7 +54,9 @@ I created a pipeline to assess the system performance over the evaluation datase
 * answer_evaluator: measures if the answer are correct, in comparison with reference answer.
 * answer_helpfulness_evaluator: measures if the answer is in fact addressing the question made.
 
-Results Table
+Below, it can be seen the average correctness (answer_v_reference_score) and helpfulness (answer_helpfulness_score), for 200 samples from the evaluation dataset.
+
+![image](https://github.com/user-attachments/assets/7101c32a-8e8f-4283-b586-9732e488e774)
 
 ## Potential Improvements
 
